@@ -1,0 +1,29 @@
+/* Your styles should be mobile-first and responsive */
+
+
+/** 
+  * If you are unclear on how to utilize a mobile-first, responsive technique to write your CSS, here is an example: 
+  *
+  * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
+  *
+*/
+
+h1 {
+    font-family: 'Langar', cursive;
+    font-size: 45px;
+    /* background-color: rgba( 108, 73, 184, 0.7); */
+    background-color: rgba(63, 75, 59, 0.7);
+    /* color: #EDECEA; */
+    color: white;
+    text-align: center;
+    padding: 2%;
+    margin: 2%;
+}
+
+#myHeaderImageGallery {
+    text-align: center;
+}
+
+body {
+    background-image: url('./images/background_images/fall_backdrop.png');
+}
