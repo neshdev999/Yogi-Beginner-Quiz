@@ -57,22 +57,53 @@ var imageChangeCounter = 0;
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
+/* Introduction Page Template */
+
 function yogiIntroPage() {
-    generateYogiIntroPageTemplate();
+    generateYogiIntroPageImageTemplate();
+    generateYogiIntroPageKickButtonTemplate();
 }
 
-function generateYogiIntroPageTemplate() {
-
-    const headerImageBaseTemplate = generateHeaderImageTemplate();
+function generateYogiIntroPageImageTemplate() {
+    const headerImageBaseTemplate = HeaderImageTemplate();
     $('.mainYogiApp').html(headerImageBaseTemplate);
 
 }
 
-function generateHeaderImageTemplate() {
-
-    return `<div id="myHeaderImageGallery"><img></div>`
-
+function generateYogiIntroPageKickButtonTemplate(){
+    const kickStartButtonBaseTemplate = KickStartButtonTemplate();
+    $('.mainYogiApp').append(kickStartButtonBaseTemplate);
 }
+
+function HeaderImageTemplate() {
+    return `<div id="myHeaderImageGallery"><img></div>`;
+}
+
+function KickStartButtonTemplate(){
+    return `<div class="kickButtonContainer">
+                <div class="kickButtonItem">
+                    <button id="kickStartButton" class="kickButton">START QUIZ</button>
+                </div>
+            </div>`;
+}
+
+/* Quiz Page Templage */
+
+
+function quizPage(){
+    generateQuizHeaderTemplate();
+}
+
+function generateQuizHeaderTemplate(){
+    const QuizHeaderBaseTemplate = QuizHeaderTemplate();
+    $('.mainYogiApp').html(QuizHeaderBaseTemplate);
+}
+
+function QuizHeaderTemplate(){
+    return `<h1>You are on First Question of Quiz</h1>`;
+}
+
+
 
 // These functions return HTML templates
 
@@ -100,12 +131,12 @@ function changeHeaderImages() {
         imageChangeCounter++;
     }
 }
-var trial;
 
-function render() {
+function yogiIntrorender() {
 
     preloadImages(headerImageStore);
-    trial = setInterval(changeHeaderImages, 6000);
+    setInterval(changeHeaderImages, 6000);
+    
 
 }
 
@@ -113,11 +144,35 @@ function render() {
 
 // These functions handle events (submit, click, etc)
 
+
+
+function loadFirstQueQuizContent(){
+    $('#kickStartButton').on('click', function (e){
+        e.preventDefault();
+        store.quizStarted = true;
+        provideRoute(store.quizStarted);
+    });
+}
+
+/********** Routing Function **********/
+
+function provideRoute(checkFlag){
+
+    if(checkFlag === false){
+        yogiIntroPage();
+        yogiIntrorender();
+        loadFirstQueQuizContent();
+    }else{
+        quizPage();
+    }
+}
+
 /********** Initialization Function **********/
 
 function initializeYogiApp() {
-    yogiIntroPage();
-    render();
+
+    provideRoute(store.quizStarted);
+
 }
 
 
