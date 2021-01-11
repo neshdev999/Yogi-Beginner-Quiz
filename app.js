@@ -94,6 +94,7 @@ function KickStartButtonTemplate() {
 function quizPage() {
     generateQuizHeaderTemplate();
     generateScoreTemplate(store);
+    generateQuestionImageTemplate(store);
     generateQuizQuestionTemplate(store);
     generateQuizAnswerTemplate(store);
     generateSubmitButtonTemplate();
@@ -134,7 +135,7 @@ function generateQuizQuestionTemplate(item) {
 function QuizQuestionTemplate(item) {
     let currentQueHolderid = item.currentQuestion;
     console.log(currentQueHolderid);
-    return `<div class="questionContainer" id="questionContainHolder"><div class="questionContent"><p id="questionContainerId">Que(${item.questionNumber}):${item.questions[currentQueHolderid]['question']}</p></div></div>`;
+    return `<div class="questionContainer" id="questionContainHolder"><div class="questionContent"><p id="questionContainerId">Que (${item.questionNumber}) ${item.questions[currentQueHolderid]['question']}</p></div></div>`;
 }
 
 /* Quiz Answer */
@@ -214,6 +215,18 @@ function quizFinalMessage(item) {
 }
 
 
+/* Question Image template */
+
+function generateQuestionImageTemplate(item) {
+    const queImageTemplateBase = queImageTemplate(item);
+    $('.mainYogiApp').append(queImageTemplateBase);
+}
+
+function queImageTemplate(item) {
+    return `<div class="queImageContainer" id="queImageContainId"><div class="queImageItem"><img id="queImageID" src="${item.questions[item.currentQuestion]['imageSource']}"></div></div>`;
+}
+
+
 // These functions return HTML templates
 
 /********** RENDER FUNCTION(S) **********/
@@ -224,6 +237,7 @@ function preloadImages(headerImageStore) {
 
     for (var i = 0; i < headerImageStore.length; i++) {
         $("#myHeaderImageGallery>img").attr("src", headerImageStore[i]);
+        $("#myHeaderImageGallery>img").attr("alt", )
     }
 }
 
@@ -231,7 +245,7 @@ function changeHeaderImages() {
 
     $('#myHeaderImageGallery img').attr({
         src: headerImageStore[imageChangeCounter],
-        alt: "jQuery Logo"
+        alt: "logo images of header containing lady doing yoga, arjuna krishna image, bhaghavad gita shloka and group doing pranayama yoga"
     });
 
     if (imageChangeCounter === 3) {
@@ -269,22 +283,27 @@ function submitButtonHandler(item) {
         var message = '';
         // compare with correct answer
         if (selectedAnswerContent === correctAnswerFromStore) {
-            console.log("Your Answer is correct");
-            message = "Your Answer is Correct!!!";
+            console.log("Your Answer is Correct!!!");
+            message = "Your Answer is Correct!!! 😀";
+            generateCorrectNotCorrectMessageTemplate(message);
+            $('.corMessageContainer').css("color", "blue");
+            $('.corMessageContainer').css("background-color", "rgba(1, 221, 253, 0.3)");
             (item.score) ++;
             console.log(item.score);
             $('.scoreHeader').text(`Score : ${item.score}/16`);
 
+
         } else {
             console.log("Your answer is not correct, please try again");
-            message = "Your Answer is not correct";
+            message = "Your Answer is not Correct 😫";
+            generateCorrectNotCorrectMessageTemplate(message);
         }
 
         //
 
 
 
-        generateCorrectNotCorrectMessageTemplate(message);
+        //  generateCorrectNotCorrectMessageTemplate(message);
         $('#submitButton').css("display", "none");
         $('#nextButton').css("display", "block");
         console.log(selectedAnswerContent);
@@ -309,6 +328,7 @@ function nextButtonHandler(item) {
             $('#submitButton').css("display", "none");
             $('#checkYouOnWhichQue').css("display", "none");
             $('#scoreHeaderId').css("display", "none");
+            $('#queImageContainId').css("display", "none");
             generateQuizFinalMessage(item);
         } else {
             (item.questionNumber) ++;
@@ -317,7 +337,7 @@ function nextButtonHandler(item) {
             $('#checkYouOnWhichQue').text(`You are on Question Number ${item.questionNumber} of Quiz`);
 
             (item.currentQuestion) ++;
-            let queHolder = `Que(${item.questionNumber}):${item.questions[item.currentQuestion]['question']}`;
+            let queHolder = `Que (${item.questionNumber}) ${item.questions[item.currentQuestion]['question']}`;
             $('#questionContainerId').text(queHolder);
             (item.currentAnswer) ++;
             let answerHolderOne = `${item.questions[item.currentAnswer]['answers'][0]}`;
@@ -326,6 +346,11 @@ function nextButtonHandler(item) {
             $('#ansItemOne').text(answerHolderOne);
             $('#ansItemTwo').text(answerHolderTwo);
             $('#ansItemThree').text(answerHolderThree);
+
+            // change image
+            let imageSourceContainer = `${item.questions[item.currentQuestion]['imageSource']}`;
+            $('#queImageID').attr('src', imageSourceContainer);
+
 
             // remove next button
             $('#nextButton').css("display", "none");

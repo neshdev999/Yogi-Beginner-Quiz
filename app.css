@@ -14,6 +14,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Raleway:500');
 @import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+
+/* Default CSS */
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 
 /* Header */
 
@@ -42,7 +56,25 @@ h2 {
 }
 
 #myHeaderImageGallery {
-    text-align: center;
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#myHeaderImageGallery>img {
+    flex: 1;
+    width: 80%;
+}
+
+
+/* Desktop Screen */
+
+@media screen and (min-width: 992px) {
+    #myHeaderImageGallery>img {
+        width: 45%;
+    }
 }
 
 body {
@@ -155,6 +187,7 @@ body {
     background-color: rgba(255, 255, 255, 0.7);
     background-color: rgba(194, 224, 247, 0.5);
     color: #8A6845;
+    color: #714A38;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 25px;
 }
@@ -188,6 +221,7 @@ body {
     background-color: #BFDFF6;
     background-color: rgba(194, 224, 247, 0.5);
     color: #767AA7;
+    color: #384A76;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 25px;
 }
@@ -236,8 +270,11 @@ body {
     border-radius: 5rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     color: #fff;
+    color: darkblue;
     cursor: pointer;
-    font: 1.5em Raleway, sans-serif;
+    /* font: 1.5em Raleway, sans-serif; */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
     height: 5rem;
     letter-spacing: 0.05em;
     outline: none;
@@ -270,7 +307,14 @@ body {
     align-items: center;
     justify-content: center;
     background-color: rgba(245, 228, 90, 0.5);
+    background-color: rgba(0, 251, 234, 0.2);
+    background-color: rgba(249, 57, 134, 0.2);
+    /* background-color: rgba(1, 221, 253, 0.3); */
     color: lightcoral;
+    color: rgb(251, 18, 83);
+    /* color: blue; */
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 30px;
 }
 
 .corMessageItem {
@@ -295,7 +339,7 @@ body {
 
 .finalMessageContainer {
     display: flex;
-    justify-content: column;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: rgba(21, 21, 21, 0.5);
@@ -313,4 +357,23 @@ body {
 .finalMessageFormat {
     font-size: 50px;
     font-family: 'East Sea Dokdo', cursive;
+}
+
+
+/* question image */
+
+.queImageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.queImageItem {
+    flex: 1;
+    margin: 10px;
+}
+
+.queImageItem>img {
+    width: 100%;
 }

@@ -8,7 +8,8 @@ const store = {
                 'The union of mind, body & spirit in communication and awareness',
                 'The union mind, soul, and body'
             ],
-            correctAnswer: 'The union of mind, body & spirit in communication and awareness'
+            correctAnswer: 'The union of mind, body & spirit in communication and awareness',
+            imageSource : './images/questionImages/what_is_yoga.png'
         },
         {
             id: 2,
@@ -18,7 +19,8 @@ const store = {
                 'Eight limbs of yoga practice',
                 'Bad space or energy, translated as pain or sorrow'
             ],
-            correctAnswer: 'Bad space or energy, translated as pain or sorrow'
+            correctAnswer: 'Bad space or energy, translated as pain or sorrow',
+            imageSource: './images/questionImages/dukhaa.jpg'
         },
         {
             id: 3,
@@ -28,7 +30,8 @@ const store = {
                 'A victory breath or ocean breath',
                 'A three part breath'
             ],
-            correctAnswer: 'Posture or devoted to the practice of the yoga postures'
+            correctAnswer: 'Posture or devoted to the practice of the yoga postures',
+            imageSource: './images/questionImages/asana.jpg'
         },
         {
             id: 4,
@@ -38,7 +41,8 @@ const store = {
                 'The five universal commandments of not harming anyone, truth, non-stealing, godly, chaste life, greedless',
                 'The devoted practice of yoga postures'
             ],
-            correctAnswer: 'The five universal commandments of not harming anyone, truth, non-stealing, godly, chaste life, greedless'
+            correctAnswer: 'The five universal commandments of not harming anyone, truth, non-stealing, godly, chaste life, greedless',
+            imageSource: './images/questionImages/yama.jpg'
         },
         {
             id: 5,
@@ -48,7 +52,8 @@ const store = {
                 'Said to be "the wheel of light" that refers to the seven physical areas of the body',
                 'Shining skull breath'
             ],
-            correctAnswer: 'Said to be "the wheel of light" that refers to the seven physical areas of the body'
+            correctAnswer: 'Said to be "the wheel of light" that refers to the seven physical areas of the body',
+            imageSource: './images/questionImages/chakra_info.jpg'
         },
         {
             id: 6,
@@ -58,7 +63,8 @@ const store = {
                 'Life force, energy that moves through all earthly things',
                 'Union of mind, body and spirit'
             ],
-            correctAnswer: 'Ha=Sun, Tha=Moon; representing duality in balance'
+            correctAnswer: 'Ha=Sun, Tha=Moon; representing duality in balance',
+            imageSource: './images/questionImages/Hatha-Yoga.jpg'
         },
         {
             id: 7,
@@ -68,7 +74,8 @@ const store = {
                 '6',
                 '24'
             ],
-            correctAnswer: '12'
+            correctAnswer: '12',
+            imageSource: './images/questionImages/surya_namaskar.jpg'
         },
         {
             id: 8,
@@ -78,7 +85,8 @@ const store = {
                 'Duality in balance',
                 'Life force, energy that moves through all earthly things'
             ],
-            correctAnswer: 'Life force, energy that moves through all earthly things'
+            correctAnswer: 'Life force, energy that moves through all earthly things',
+            imageSource: './images/questionImages/prana.jpg'
         },
         {
             id: 9,
@@ -88,7 +96,8 @@ const store = {
                 'The five personal disciplines of cleanliness, contentedness, self discipline, study, study of the scriptures and dedication to God',
                 'Three part breath'
             ],
-            correctAnswer: 'The five personal disciplines of cleanliness, contentedness, self discipline, study, study of the scriptures and dedication to God'
+            correctAnswer: 'The five personal disciplines of cleanliness, contentedness, self discipline, study, study of the scriptures and dedication to God',
+            imageSource: './images/questionImages/niyama.png'
         },
         {
             id: 10,
@@ -98,7 +107,8 @@ const store = {
                 'A state of sleep',
                 'A state of resting'
             ],
-            correctAnswer: 'A trance or state of bliss'
+            correctAnswer: 'A trance or state of bliss',
+            imageSource: './images/questionImages/samadhi.jpg'
         },
         {
             id: 11,
@@ -108,7 +118,8 @@ const store = {
                 'False',
                 'Neither True nor False'
             ],
-            correctAnswer: 'True'
+            correctAnswer: 'True',
+            imageSource: './images/questionImages/dhyana.jpg'
         },
         {
             id: 12,
@@ -118,7 +129,8 @@ const store = {
                 'False',
                 'Neither True nor False'
             ],
-            correctAnswer: 'False'
+            correctAnswer: 'False',
+            imageSource: './images/questionImages/pratyahara.jpg'
         },
         {
             id: 13,
@@ -128,7 +140,8 @@ const store = {
                 'False',
                 'Neither True nor False'
             ],
-            correctAnswer: 'True'
+            correctAnswer: 'True',
+            imageSource: './images/questionImages/dharana.jpg'
         },
         {
             id: 14,
@@ -138,7 +151,8 @@ const store = {
                 'False',
                 'Neither True nor False'
             ],
-            correctAnswer: 'True'
+            correctAnswer: 'True',
+            imageSource: './images/questionImages/pranayama.jpg'
         },
         {
             id: 15,
@@ -148,7 +162,8 @@ const store = {
                 'False',
                 'Neither True nor False'
             ],
-            correctAnswer: 'True'
+            correctAnswer: 'True',
+            imageSource: './images/questionImages/remove_bad.jpg'
         },
         {
             id: 16,
@@ -158,7 +173,8 @@ const store = {
                 'Yama, Dharana, Pratyahara',
                 'Ananda, Asmita, Aachaar'
             ],
-            correctAnswer: 'Yama, Dharana, Pratyahara'
+            correctAnswer: 'Yama, Dharana, Pratyahara',
+            imageSource: './images/questionImages/eight_fold.png'
         }
     ],
     quizStarted: false,
