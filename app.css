@@ -8,6 +8,15 @@
   *
 */
 
+
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway:500');
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap');
+
+/* Header */
+
 h1 {
     font-family: 'Langar', cursive;
     font-size: 45px;
@@ -18,6 +27,18 @@ h1 {
     text-align: center;
     padding: 2%;
     margin: 2%;
+}
+
+h2 {
+    font-family: 'Hachi Maru Pop', cursive;
+    font-size: 28px;
+    /* background-color: rgba( 108, 73, 184, 0.7); */
+    background-color: rgba(63, 75, 59, 0.7);
+    /* color: #EDECEA; */
+    color: white;
+    text-align: center;
+    padding: 1%;
+    margin: 1%;
 }
 
 #myHeaderImageGallery {
@@ -121,4 +142,175 @@ body {
 .centerContent {
     margin-left: 270px;
     margin-top: 100px;
+}
+
+
+/* Question */
+
+.questionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(194, 224, 247, 0.5);
+    color: #8A6845;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 25px;
+}
+
+.questionContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.questionContent p {
+    flex: 1;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/* Answer */
+
+.quizAnswerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    /* background-color: rgba(255, 255, 255, 0.7); */
+    /* color: #8A6845; */
+    background-color: #BFDFF6;
+    background-color: rgba(194, 224, 247, 0.5);
+    color: #767AA7;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 25px;
+}
+
+.quizAnswerContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-right: 1%;
+}
+
+.quizAnswerContent div {
+    flex: 1;
+    padding: 5px;
+}
+
+.bulletHolder {
+    padding: 10px;
+    margin: 10px;
+}
+
+
+/* Submit Button */
+
+.submitButtonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.submitButtonContainer button {
+    flex: 1;
+    padding: 1%;
+    margin: 1%;
+}
+
+.submitButtonStyleHolder {
+    background: linear-gradient(to right, #a2ccb6 0%, #fceeb5 50%, #ee786e 100%);
+    background-size: 500%;
+    border: none;
+    border-radius: 5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    color: #fff;
+    cursor: pointer;
+    font: 1.5em Raleway, sans-serif;
+    height: 5rem;
+    letter-spacing: 0.05em;
+    outline: none;
+    user-select: none;
+    width: 20rem;
+}
+
+.submitButtonStyleHolder:hover {
+    animation-name: passColor;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes passColor {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+
+/* Correct InCorrect Message  */
+
+.corMessageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(245, 228, 90, 0.5);
+    color: lightcoral;
+}
+
+.corMessageItem {
+    flex: 1;
+    margin: 1%;
+    padding: 1%;
+}
+
+
+/* submit and next button */
+
+#nextButton {
+    display: none;
+}
+
+#submitButton {
+    display: block;
+}
+
+
+/* Final Message */
+
+.finalMessageContainer {
+    display: flex;
+    justify-content: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(21, 21, 21, 0.5);
+    color: rgb(255, 255, 255);
+    padding: 5%;
+    margin: 2%;
+}
+
+.finalMessageContent {
+    flex: 1;
+    margin: 1%;
+    padding: 1%;
+}
+
+.finalMessageFormat {
+    font-size: 50px;
+    font-family: 'East Sea Dokdo', cursive;
 }
