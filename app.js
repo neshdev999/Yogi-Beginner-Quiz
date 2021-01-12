@@ -287,7 +287,6 @@ function nextButtonHandler(item) {
     $('#nextButton').on('click', function(e) {
         e.preventDefault();
         // remove correct incorrect message item
-        // $('.corMessageContainer').css("display", "none");
         $('.corMessageItem').text('');
         $('.corMessageContainer').css("background-color", "transparent");
 
@@ -337,26 +336,6 @@ function restartQuizHandler() {
     window.location.reload();
 }
 
-// function handleRadioClicks() {
-//     $('.radioOption').on('click', function(event) {
-
-//         const targetRadioOption = $(event.currentTarget);
-//         const otherRadioOption = $('.radioOption').not(targetRadioOption);
-//         targetRadioOption.attr('aria-pressed', true)
-//         const pressedBool = $(targetRadioOption).attr('aria-pressed') === 'true';
-//         console.log(targetRadioOption);
-//         console.log(pressedBool);
-//         otherRadioOption.attr('aria-pressed', false);
-//         if (pressedBool) {
-//             $('#submitButton').attr('aria-pressed', true);
-//             $('#submitButton').click();
-//         }
-
-
-
-//     });
-// }
-
 function handleRadioClicks() {
 
     $(".radioOption").keyup(function(event) {
@@ -365,8 +344,6 @@ function handleRadioClicks() {
             const otherRadioOption = $('.radioOption').not(targetRadioOption);
             targetRadioOption.attr('aria-pressed', true)
             const pressedBool = $(targetRadioOption).attr('aria-pressed') === 'true';
-            // console.log(targetRadioOption);
-            // console.log(pressedBool);
             otherRadioOption.attr('aria-pressed', false);
             if (pressedBool) {
                 $('#submitButton').attr('aria-pressed', true);
