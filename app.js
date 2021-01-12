@@ -67,7 +67,6 @@ function quizPage() {
     generateQuizAnswerTemplate(store);
     generateSubmitButtonTemplate();
     generateNextButtonTemplate();
-
 }
 
 /* Quiz Header */
@@ -186,6 +185,19 @@ function queImageTemplate(item) {
     return `<div class="queImageContainer" id="queImageContainId"><div class="queImageItem"><img id="queImageID" src="${item.questions[item.currentQuestion]['imageSource']}" alt="${item.questions[item.currentQuestion]['altText']}"></div></div>`;
 }
 
+/* Footer */
+function generateFooter() {
+    const yogiFooterBase = yogiFooter();
+    $('.mainYogiApp').append(yogiFooterBase);
+}
+
+function yogiFooter() {
+    return `<div class="FooterContainer"><div class="Footer"><span>Beginner Yogi&nbsp;&nbsp;<br></span><span>nesh &copy; ${getCopyRightYear()}</span></div></div>`;
+}
+
+function getCopyRightYear() {
+    return new Date().getFullYear();
+}
 
 // These functions return HTML templates
 
@@ -310,7 +322,7 @@ function provideRoute(checkFlag) {
         yogiIntroPage();
         yogiIntrorender();
         loadFirstQueQuizContent();
-        // restartQuizHandler();
+        generateFooter();
     } else {
         quizPage();
         submitButtonHandler(store);
