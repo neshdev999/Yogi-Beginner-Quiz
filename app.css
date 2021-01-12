@@ -22,7 +22,7 @@ html {
 
 h1 {
     font-family: 'Langar', cursive;
-    font-size: 45px;
+    font-size: 30px;
     /* background-color: rgba( 108, 73, 184, 0.7); */
     background-color: rgba(63, 75, 59, 0.7);
     /* color: #EDECEA; */
@@ -34,7 +34,7 @@ h1 {
 
 h2 {
     font-family: 'Hachi Maru Pop', cursive;
-    font-size: 28px;
+    font-size: 24px;
     /* background-color: rgba( 108, 73, 184, 0.7); */
     background-color: rgba(63, 75, 59, 0.7);
     /* color: #EDECEA; */
@@ -99,7 +99,7 @@ body {
     border-radius: 10px;
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
+    font-size: 22px;
 }
 
 .kickButton:before {
@@ -177,7 +177,7 @@ body {
     color: #8A6845;
     color: #714A38;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .questionContent {
@@ -211,7 +211,7 @@ body {
     color: #767AA7;
     color: #384A76;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .quizAnswerContent {
@@ -261,7 +261,7 @@ body {
     color: darkblue;
     cursor: pointer;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 30px;
+    font-size: 22px;
     height: 5rem;
     letter-spacing: 0.05em;
     outline: none;
@@ -296,7 +296,7 @@ body {
     background-color: rgba(249, 57, 134, 0.2);
     color: rgb(251, 18, 83);
     font-family: 'Yusei Magic', sans-serif;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .corMessageItem {
@@ -337,7 +337,7 @@ body {
 }
 
 .finalMessageFormat {
-    font-size: 50px;
+    font-size: 45px;
     font-family: 'East Sea Dokdo', cursive;
 }
 
