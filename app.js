@@ -248,7 +248,6 @@ function loadFirstQueQuizContent() {
 function submitButtonHandler(item) {
     $('#submitButton').on('click', function(e) {
         e.preventDefault();
-
         // validate radio button
         if (!$("input[type=radio][name=answerRadio]").is(':checked')) {
             $('#validationText').text("Please select one of the answers 🥵");
