@@ -192,7 +192,7 @@ function generateFooter() {
 }
 
 function yogiFooter() {
-    return `<div class="FooterContainer"><div class="Footer"><span>Beginner Yogi&nbsp;&nbsp;<br></span><span>nesh &copy; ${getCopyRightYear()}</span></div></div>`;
+    return `<footer><div class="FooterContainer"><div class="Footer"><span>Beginner Yogi&nbsp;&nbsp;<br></span><span>nesh &copy; ${getCopyRightYear()}</span></div></div></footer>`;
 }
 
 function getCopyRightYear() {
