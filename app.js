@@ -1,35 +1,5 @@
-/**
- * Example store structure
- */
-// const store = {
-//     // 5 or more questions are required
-//     questions: [{
-//             question: 'What color is broccoli?',
-//             answers: [
-//                 'red',
-//                 'orange',
-//                 'pink',
-//                 'green'
-//             ],
-//             correctAnswer: 'green'
-//         },
-//         {
-//             question: 'What is the current year?',
-//             answers: [
-//                 '1970',
-//                 '2015',
-//                 '2019',
-//                 '2005'
-//             ],
-//             correctAnswer: '2019'
-//         }
-//     ],
-//     quizStarted: false,
-//     questionNumber: 1,
-//     score: 0,
-//     currentQuestion: 0
-// };
-
+/* Global variables */
+/* Header Image Storage Array */
 const headerImageStore = [
 
     "./images/headerFrontPage/krishna-arjuna.png",
@@ -39,7 +9,6 @@ const headerImageStore = [
 ];
 
 var imageChangeCounter = 0;
-
 
 /**
  * 
@@ -90,7 +59,6 @@ function KickStartButtonTemplate() {
 
 /* Quiz Page Templage */
 
-
 function quizPage() {
     generateQuizHeaderTemplate();
     generateScoreTemplate(store);
@@ -111,7 +79,7 @@ function generateQuizHeaderTemplate() {
 }
 
 function QuizHeaderTemplate(item) {
-    return `<h2 id="checkYouOnWhichQue">You are on Question Number ${item.questionNumber} / 16 of Quiz</h2>`;
+    return `<header><h2 id="checkYouOnWhichQue">You are on Question Number ${item.questionNumber} / 16 of Quiz</h2></header>`;
 }
 
 function generateScoreTemplate(storage) {
@@ -128,13 +96,10 @@ function scoreTemplate(score) {
 function generateQuizQuestionTemplate(item) {
     const QuizQuestionBaseTemplate = QuizQuestionTemplate(item);
     $('.mainYogiApp').append(QuizQuestionBaseTemplate);
-    // item.currentQuestion++;
-    // console.log(item.currentQuestion);
 }
 
 function QuizQuestionTemplate(item) {
     let currentQueHolderid = item.currentQuestion;
-    console.log(currentQueHolderid);
     return `<div class="questionContainer" id="questionContainHolder"><div class="questionContent"><p id="questionContainerId">Que (${item.questionNumber}) ${item.questions[currentQueHolderid]['question']}</p></div></div>`;
 }
 
@@ -147,13 +112,8 @@ function generateQuizAnswerTemplate(item) {
 
 function QuizAnswerTemplate(item) {
     let currentAnswerHolderid = item.currentAnswer;
-    console.log(currentAnswerHolderid);
-    let firstAnswer = item.questions[currentAnswerHolderid]['answers'][0];
-    let secondAnswer = item.questions[currentAnswerHolderid]['answers'][1];
-    let thirdAnswer = item.questions[currentAnswerHolderid]['answers'][2];
-
-    console.log(firstAnswer);
     return `
+    <form>
     <div class="quizAnswerContainer" id="quizAnswerContainHolder">
     <div class="quizAnswerContent">    
     <div>
@@ -166,7 +126,7 @@ function QuizAnswerTemplate(item) {
     <span class="bulletHolder"><input type="radio" name="answerRadio" value="thirdAns"></span><span class="ansItemHolder" id="ansItemThree">${item.questions[currentAnswerHolderid]['answers'][2]}</span>
     </div>
     </div>
-    </div>`;
+    </div></form>`;
 }
 
 /* Quiz Submit Button */
@@ -191,7 +151,7 @@ function nextButtonTemplate() {
     return `<div class="submitButtonContainer"><button class="submitButtonStyleHolder" id='nextButton'>NEXT</button></div>`;
 }
 
-/* Quiz correct/Incorrect question answer Message template*/
+/* Quiz correct/Incorrect question answer Message Template*/
 
 function generateCorrectNotCorrectMessageTemplate(text) {
     const correctNotCorrectMessageBaseTemplate = correctNotCorrectMessage(text);
@@ -203,7 +163,7 @@ function correctNotCorrectMessage(text) {
     return `<div class="corMessageContainer"><div class="corMessageItem">${text}</div></div>`;
 }
 
-/* Quiz Final Message template*/
+/* Quiz Final Message Template*/
 
 function generateQuizFinalMessage(item) {
     const quizFinalMessageBase = quizFinalMessage(item);
@@ -215,7 +175,7 @@ function quizFinalMessage(item) {
 }
 
 
-/* Question Image template */
+/* Question Image Template */
 
 function generateQuestionImageTemplate(item) {
     const queImageTemplateBase = queImageTemplate(item);
@@ -276,43 +236,32 @@ function submitButtonHandler(item) {
     $('#submitButton').on('click', function(e) {
         e.preventDefault();
         // Get the value from a set of radio buttons
-        let selectedAnswer = $("input[type=radio][name=answerRadio]:checked").val();
         let selectedAnswerContent = $("input[type=radio][name=answerRadio]:checked").parent().siblings().text();
         var holderId = item.currentAnswer;
         var correctAnswerFromStore = item.questions[holderId]['correctAnswer'];
         var message = '';
         // compare with correct answer
         if (selectedAnswerContent === correctAnswerFromStore) {
-            console.log("Your Answer is Correct!!!");
             message = "Your Answer is Correct!!! 😀";
             generateCorrectNotCorrectMessageTemplate(message);
             $('.corMessageContainer').css("color", "blue");
             $('.corMessageContainer').css("background-color", "rgba(1, 221, 253, 0.3)");
             (item.score) ++;
-            console.log(item.score);
             $('.scoreHeader').text(`Score : ${item.score}/16`);
         } else {
-            console.log("Your answer is not correct, please try again");
             message = `Your Answer is not Correct 😫. The correct answer is : ${item.questions[item.currentAnswer]['correctAnswer']}`;
             generateCorrectNotCorrectMessageTemplate(message);
         }
-        //  generateCorrectNotCorrectMessageTemplate(message);
         $('#submitButton').css("display", "none");
         $('#nextButton').css("display", "block");
-        console.log(selectedAnswerContent);
     });
 }
 
 function nextButtonHandler(item) {
     $('#nextButton').on('click', function(e) {
         e.preventDefault();
-        // generateQuizQuestionTemplate(item);
-
         // remove correct incorrect message item
         $('.corMessageContainer').css("display", "none");
-        console.log("check Nesh");
-        console.log(item.questionNumber);
-
         // check if it is last question
         if (parseInt(item.questionNumber) === 16) {
             $('#questionContainHolder').css("display", "none");
@@ -325,10 +274,8 @@ function nextButtonHandler(item) {
             generateQuizFinalMessage(item);
         } else {
             (item.questionNumber) ++;
-
             // update QuizHeaderTemplate
             $('#checkYouOnWhichQue').text(`You are on Question Number ${item.questionNumber} / 16 of Quiz`);
-
             (item.currentQuestion) ++;
             let queHolder = `Que (${item.questionNumber}) ${item.questions[item.currentQuestion]['question']}`;
             $('#questionContainerId').text(queHolder);
@@ -339,14 +286,11 @@ function nextButtonHandler(item) {
             $('#ansItemOne').text(answerHolderOne);
             $('#ansItemTwo').text(answerHolderTwo);
             $('#ansItemThree').text(answerHolderThree);
-
             // change image
             let imageSourceContainer = `${item.questions[item.currentQuestion]['imageSource']}`;
             let imageAltTextContainer = `${item.questions[item.currentQuestion]['altText']}`;
             $('#queImageID').attr('src', imageSourceContainer);
-            $('#queImageID').attr('alt', imageAltTextContainer)
-
-
+            $('#queImageID').attr('alt', imageAltTextContainer);
             // remove next button
             $('#nextButton').css("display", "none");
             $('#submitButton').css("display", "block");
@@ -362,7 +306,6 @@ function restartQuizHandler() {
 /********** Routing Function **********/
 
 function provideRoute(checkFlag) {
-
     if (checkFlag === false) {
         yogiIntroPage();
         yogiIntrorender();
@@ -372,43 +315,15 @@ function provideRoute(checkFlag) {
         quizPage();
         submitButtonHandler(store);
         nextButtonHandler(store);
-        // restartQuizHandler();
-        // var check = true;
-        // if(check){
-        //     submitButtonHandler(store);
-        //     nextButtonHandler(store);
-        //     check = false;
-        // }else{
-        //     var counter = 7;
-        //     while(counter >=5 ){
-        //         submitButtonHandler(store);
-        //         nextButtonHandler(store);
-        //         counter --;
-        //     }
-        // if(counter === 1){
-        //     submitButtonHandler(store);
-        //     nextButtonHandler(store);
-        //     $('#nextButton').css("display","none");
-        //     generateQuizFinalMessage(store);
-
-        // }
     }
-
-
-
 }
 
 
 /********** Initialization Function **********/
 
 function initializeYogiApp() {
-
     provideRoute(store.quizStarted);
-
 }
-
-
-
 
 // When the page loads, call `initializeYogiApp`
 $(initializeYogiApp);
