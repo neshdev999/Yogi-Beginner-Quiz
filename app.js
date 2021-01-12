@@ -111,7 +111,7 @@ function generateQuizHeaderTemplate() {
 }
 
 function QuizHeaderTemplate(item) {
-    return `<h2 id="checkYouOnWhichQue">You are on Question Number ${item.questionNumber} of Quiz</h2>`;
+    return `<h2 id="checkYouOnWhichQue">You are on Question Number ${item.questionNumber} / 16 of Quiz</h2>`;
 }
 
 function generateScoreTemplate(storage) {
@@ -223,7 +223,7 @@ function generateQuestionImageTemplate(item) {
 }
 
 function queImageTemplate(item) {
-    return `<div class="queImageContainer" id="queImageContainId"><div class="queImageItem"><img id="queImageID" src="${item.questions[item.currentQuestion]['imageSource']}"></div></div>`;
+    return `<div class="queImageContainer" id="queImageContainId"><div class="queImageItem"><img id="queImageID" src="${item.questions[item.currentQuestion]['imageSource']}" alt="${item.questions[item.currentQuestion]['altText']}"></div></div>`;
 }
 
 
@@ -291,18 +291,11 @@ function submitButtonHandler(item) {
             (item.score) ++;
             console.log(item.score);
             $('.scoreHeader').text(`Score : ${item.score}/16`);
-
-
         } else {
             console.log("Your answer is not correct, please try again");
-            message = "Your Answer is not Correct 😫";
+            message = `Your Answer is not Correct 😫. The correct answer is : ${item.questions[item.currentAnswer]['correctAnswer']}`;
             generateCorrectNotCorrectMessageTemplate(message);
         }
-
-        //
-
-
-
         //  generateCorrectNotCorrectMessageTemplate(message);
         $('#submitButton').css("display", "none");
         $('#nextButton').css("display", "block");
@@ -334,7 +327,7 @@ function nextButtonHandler(item) {
             (item.questionNumber) ++;
 
             // update QuizHeaderTemplate
-            $('#checkYouOnWhichQue').text(`You are on Question Number ${item.questionNumber} of Quiz`);
+            $('#checkYouOnWhichQue').text(`You are on Question Number ${item.questionNumber} / 16 of Quiz`);
 
             (item.currentQuestion) ++;
             let queHolder = `Que (${item.questionNumber}) ${item.questions[item.currentQuestion]['question']}`;
@@ -349,7 +342,9 @@ function nextButtonHandler(item) {
 
             // change image
             let imageSourceContainer = `${item.questions[item.currentQuestion]['imageSource']}`;
+            let imageAltTextContainer = `${item.questions[item.currentQuestion]['altText']}`;
             $('#queImageID').attr('src', imageSourceContainer);
+            $('#queImageID').attr('alt', imageAltTextContainer)
 
 
             // remove next button
