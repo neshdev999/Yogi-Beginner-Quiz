@@ -99,7 +99,7 @@ function generateQuizQuestionTemplate(item) {
 
 function QuizQuestionTemplate(item) {
     let currentQueHolderid = item.currentQuestion;
-    return `<div class="questionContainer" id="questionContainHolder"><div class="questionContent"><p id="questionContainerId">Que (${item.questionNumber}) ${item.questions[currentQueHolderid]['question']}</p></div></div>`;
+    return `<div class="questionContainer" id="questionContainHolder"><div class="questionContent"><p id="questionContainerId">Question (${item.questionNumber}) ${item.questions[currentQueHolderid]['question']}</p></div></div>`;
 }
 
 /* Quiz Answer */
@@ -116,14 +116,15 @@ function QuizAnswerTemplate(item) {
     <div class="quizAnswerContainer" id="quizAnswerContainHolder">
     <div class="quizAnswerContent">    
     <div>
-    <span class="bulletHolder"><input type="radio" name="answerRadio" value="firstAns" checked></span><span class="ansItemHolder" id="ansItemOne">${item.questions[currentAnswerHolderid]['answers'][0]}</span>
+    <span class="bulletHolder"><input type="radio" name="answerRadio" value="firstAns" required /></span><span class="ansItemHolder" id="ansItemOne">${item.questions[currentAnswerHolderid]['answers'][0]}</span>
     </div>
     <div>
-    <span class="bulletHolder"><input type="radio" name="answerRadio" value="sencondAns"></span><span class="ansItemHolder" id="ansItemTwo">${item.questions[currentAnswerHolderid]['answers'][1]}</span>
+    <span class="bulletHolder"><input type="radio" name="answerRadio" value="sencondAns" /></span><span class="ansItemHolder" id="ansItemTwo">${item.questions[currentAnswerHolderid]['answers'][1]}</span>
     </div>
     <div>
-    <span class="bulletHolder"><input type="radio" name="answerRadio" value="thirdAns"></span><span class="ansItemHolder" id="ansItemThree">${item.questions[currentAnswerHolderid]['answers'][2]}</span>
+    <span class="bulletHolder"><input type="radio" name="answerRadio" value="thirdAns" /></span><span class="ansItemHolder" id="ansItemThree">${item.questions[currentAnswerHolderid]['answers'][2]}</span>
     </div>
+    <div id="validationText"></div>
     </div>
     </div></form>`;
 }
@@ -247,25 +248,32 @@ function loadFirstQueQuizContent() {
 function submitButtonHandler(item) {
     $('#submitButton').on('click', function(e) {
         e.preventDefault();
-        // Get the value from a set of radio buttons
-        let selectedAnswerContent = $("input[type=radio][name=answerRadio]:checked").parent().siblings().text();
-        var holderId = item.currentAnswer;
-        var correctAnswerFromStore = item.questions[holderId]['correctAnswer'];
-        var message = '';
-        // compare with correct answer
-        if (selectedAnswerContent === correctAnswerFromStore) {
-            message = "Your Answer is Correct!!! 😀";
-            generateCorrectNotCorrectMessageTemplate(message);
-            $('.corMessageContainer').css("color", "blue");
-            $('.corMessageContainer').css("background-color", "rgba(1, 221, 253, 0.3)");
-            (item.score) ++;
-            $('.scoreHeader').text(`Score : ${item.score}/16`);
+
+        // validate radio button
+        if (!$("input[type=radio][name=answerRadio]").is(':checked')) {
+            $('#validationText').text("Please select one of the answers 🥵");
         } else {
-            message = `Your Answer is not Correct 😫. The correct answer is : ${item.questions[item.currentAnswer]['correctAnswer']}`;
-            generateCorrectNotCorrectMessageTemplate(message);
+            $('#validationText').text("");
+            // Get the value from a set of radio buttons
+            let selectedAnswerContent = $("input[type=radio][name=answerRadio]:checked").parent().siblings().text();
+            var holderId = item.currentAnswer;
+            var correctAnswerFromStore = item.questions[holderId]['correctAnswer'];
+            var message = '';
+            // compare with correct answer
+            if (selectedAnswerContent === correctAnswerFromStore) {
+                message = "Your Answer is Correct!!! 😀";
+                generateCorrectNotCorrectMessageTemplate(message);
+                $('.corMessageContainer').css("color", "blue");
+                $('.corMessageContainer').css("background-color", "rgba(1, 221, 253, 0.3)");
+                (item.score) ++;
+                $('.scoreHeader').text(`Score : ${item.score}/16`);
+            } else {
+                message = `Your Answer is not Correct 😫. The correct answer is : ${item.questions[item.currentAnswer]['correctAnswer']}`;
+                generateCorrectNotCorrectMessageTemplate(message);
+            }
+            $('#submitButton').css("display", "none");
+            $('#nextButton').css("display", "block");
         }
-        $('#submitButton').css("display", "none");
-        $('#nextButton').css("display", "block");
     });
 }
 
@@ -274,6 +282,8 @@ function nextButtonHandler(item) {
         e.preventDefault();
         // remove correct incorrect message item
         $('.corMessageContainer').css("display", "none");
+        // reset radio button
+        $("input[type=radio][name=answerRadio]").prop("checked", false);
         // check if it is last question
         if (parseInt(item.questionNumber) === 16) {
             $('#questionContainHolder').css("display", "none");
@@ -289,7 +299,7 @@ function nextButtonHandler(item) {
             // update QuizHeaderTemplate
             $('#checkYouOnWhichQue').text(`You are on Question Number ${item.questionNumber} / 16 of Quiz`);
             (item.currentQuestion) ++;
-            let queHolder = `Que (${item.questionNumber}) ${item.questions[item.currentQuestion]['question']}`;
+            let queHolder = `Question (${item.questionNumber}) ${item.questions[item.currentQuestion]['question']}`;
             $('#questionContainerId').text(queHolder);
             (item.currentAnswer) ++;
             let answerHolderOne = `${item.questions[item.currentAnswer]['answers'][0]}`;

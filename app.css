@@ -285,6 +285,10 @@ body {
     }
 }
 
+#validationText {
+    color: crimson;
+}
+
 
 /* Correct InCorrect Message  */
 
