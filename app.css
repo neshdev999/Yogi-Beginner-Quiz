@@ -90,7 +90,6 @@ body {
     width: 220px;
     height: 100px;
     border: none;
-    outline: none;
     color: #fff;
     background: #111;
     cursor: pointer;
@@ -100,6 +99,10 @@ body {
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 22px;
+}
+
+.kickButton:focus {
+    outline: darkorange solid 4px;
 }
 
 .kickButton:before {
@@ -264,9 +267,11 @@ body {
     font-size: 22px;
     height: 5rem;
     letter-spacing: 0.05em;
-    outline: none;
-    user-select: none;
     width: 20rem;
+}
+
+.submitButtonStyleHolder:focus-visible {
+    outline: darkslateblue solid 4px;
 }
 
 .submitButtonStyleHolder:hover {

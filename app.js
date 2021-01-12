@@ -172,7 +172,7 @@ function generateQuizFinalMessage(item) {
 }
 
 function quizFinalMessage(item) {
-    return `<div class="finalMessageContainer"><div class="finalMessageContent"><p class="finalMessageFormat">Your score is: ${item.score}/16</p><button id="restartQuizButton" onClick="restartQuizHandler();" class="kickButton">Restart Quiz</button></div></div>`
+    return `<div class="finalMessageContainer"><div class="finalMessageContent"><p class="finalMessageFormat">Your score is: ${item.score}/16</p><button type="button" id="restartQuizButton" onClick="restartQuizHandler();" class="kickButton">Restart Quiz</button></div></div>`
 }
 
 
