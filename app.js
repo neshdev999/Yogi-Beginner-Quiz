@@ -52,7 +52,7 @@ function HeaderImageTemplate() {
 function KickStartButtonTemplate() {
     return `<div class="kickButtonContainer">
                 <div class="kickButtonItem">
-                    <button id="kickStartButton" class="kickButton">START QUIZ</button>
+                    <button id="kickStartButton" class="kickButton" type="button">START QUIZ</button>
                 </div>
             </div>`;
 }
@@ -63,6 +63,7 @@ function quizPage() {
     generateQuizHeaderTemplate();
     generateScoreTemplate(store);
     generateQuestionImageTemplate(store);
+    generateCorrectNotCorrectMessageTemplate('');
     generateQuizQuestionTemplate(store);
     generateQuizAnswerTemplate(store);
     generateSubmitButtonTemplate();
@@ -116,13 +117,13 @@ function QuizAnswerTemplate(item) {
     <div class="quizAnswerContainer" id="quizAnswerContainHolder">
     <div class="quizAnswerContent">    
     <div>
-    <span class="bulletHolder"><input type="radio" name="answerRadio" value="firstAns" required /></span><span class="ansItemHolder" id="ansItemOne">${item.questions[currentAnswerHolderid]['answers'][0]}</span>
+    <span class="bulletHolder"><input type="radio" name="answerRadio" value="firstAns" required aria-pressed="false" class="radioOption" /></span><span class="ansItemHolder" id="ansItemOne">${item.questions[currentAnswerHolderid]['answers'][0]}</span>
     </div>
     <div>
-    <span class="bulletHolder"><input type="radio" name="answerRadio" value="sencondAns" /></span><span class="ansItemHolder" id="ansItemTwo">${item.questions[currentAnswerHolderid]['answers'][1]}</span>
+    <span class="bulletHolder"><input type="radio" name="answerRadio" value="sencondAns" aria-pressed="false" class="radioOption"  /></span><span class="ansItemHolder" id="ansItemTwo">${item.questions[currentAnswerHolderid]['answers'][1]}</span>
     </div>
     <div>
-    <span class="bulletHolder"><input type="radio" name="answerRadio" value="thirdAns" /></span><span class="ansItemHolder" id="ansItemThree">${item.questions[currentAnswerHolderid]['answers'][2]}</span>
+    <span class="bulletHolder"><input type="radio" name="answerRadio" value="thirdAns" aria-pressed="false"  class="radioOption" /></span><span class="ansItemHolder" id="ansItemThree">${item.questions[currentAnswerHolderid]['answers'][2]}</span>
     </div>
     <div id="validationText"></div>
     </div>
@@ -137,7 +138,7 @@ function generateSubmitButtonTemplate() {
 }
 
 function submitButtonTemplate() {
-    return `<div class="submitButtonContainer"><button class="submitButtonStyleHolder" id='submitButton'>SUBMIT</button></div>`;
+    return `<div class="submitButtonContainer"><button class="submitButtonStyleHolder" id='submitButton' aria-pressed='false' type="button">SUBMIT</button></div>`;
 }
 
 /* Quiz Next Button */
@@ -148,7 +149,7 @@ function generateNextButtonTemplate() {
 }
 
 function nextButtonTemplate() {
-    return `<div class="submitButtonContainer"><button class="submitButtonStyleHolder" id='nextButton'>NEXT</button></div>`;
+    return `<div class="submitButtonContainer"><button class="submitButtonStyleHolder" id='nextButton' type="button">NEXT</button></div>`;
 }
 
 /* Quiz correct/Incorrect question answer Message Template*/
@@ -261,16 +262,22 @@ function submitButtonHandler(item) {
             // compare with correct answer
             if (selectedAnswerContent === correctAnswerFromStore) {
                 message = "Your Answer is Correct!!! 😀";
-                generateCorrectNotCorrectMessageTemplate(message);
+                //generateCorrectNotCorrectMessageTemplate(message);
+                $('.corMessageItem').text(message);
                 $('.corMessageContainer').css("color", "blue");
                 $('.corMessageContainer').css("background-color", "rgba(1, 221, 253, 0.3)");
                 (item.score) ++;
                 $('.scoreHeader').text(`Score : ${item.score}/16`);
             } else {
                 message = `Your Answer is not Correct 😫. The correct answer is : ${item.questions[item.currentAnswer]['correctAnswer']}`;
-                generateCorrectNotCorrectMessageTemplate(message);
+                // generateCorrectNotCorrectMessageTemplate(message);
+                $('.corMessageItem').text(message);
+                $('.corMessageContainer').css("color", "rgb(251, 18, 83)");
+                $('.corMessageContainer').css("background-color", "rgba(249, 57, 134, 0.2)");
             }
             $('#submitButton').css("display", "none");
+            // disable radio buttons now 
+            $("input[type=radio][name=answerRadio]").attr('disabled', true);
             $('#nextButton').css("display", "block");
         }
     });
@@ -280,7 +287,13 @@ function nextButtonHandler(item) {
     $('#nextButton').on('click', function(e) {
         e.preventDefault();
         // remove correct incorrect message item
-        $('.corMessageContainer').css("display", "none");
+        // $('.corMessageContainer').css("display", "none");
+        $('.corMessageItem').text('');
+        $('.corMessageContainer').css("background-color", "transparent");
+
+        // enable radio button
+        $("input[type=radio][name=answerRadio]").attr('disabled', false);
+
         // reset radio button
         $("input[type=radio][name=answerRadio]").prop("checked", false);
         // check if it is last question
@@ -324,6 +337,45 @@ function restartQuizHandler() {
     window.location.reload();
 }
 
+// function handleRadioClicks() {
+//     $('.radioOption').on('click', function(event) {
+
+//         const targetRadioOption = $(event.currentTarget);
+//         const otherRadioOption = $('.radioOption').not(targetRadioOption);
+//         targetRadioOption.attr('aria-pressed', true)
+//         const pressedBool = $(targetRadioOption).attr('aria-pressed') === 'true';
+//         console.log(targetRadioOption);
+//         console.log(pressedBool);
+//         otherRadioOption.attr('aria-pressed', false);
+//         if (pressedBool) {
+//             $('#submitButton').attr('aria-pressed', true);
+//             $('#submitButton').click();
+//         }
+
+
+
+//     });
+// }
+
+function handleRadioClicks() {
+
+    $(".radioOption").keyup(function(event) {
+        if (event.keyCode === 13) {
+            const targetRadioOption = $(event.currentTarget);
+            const otherRadioOption = $('.radioOption').not(targetRadioOption);
+            targetRadioOption.attr('aria-pressed', true)
+            const pressedBool = $(targetRadioOption).attr('aria-pressed') === 'true';
+            // console.log(targetRadioOption);
+            // console.log(pressedBool);
+            otherRadioOption.attr('aria-pressed', false);
+            if (pressedBool) {
+                $('#submitButton').attr('aria-pressed', true);
+                $('#submitButton').click();
+            }
+        }
+    });
+}
+
 /********** Routing Function **********/
 
 function provideRoute(checkFlag) {
@@ -334,8 +386,10 @@ function provideRoute(checkFlag) {
         generateFooter();
     } else {
         quizPage();
+        handleRadioClicks();
         submitButtonHandler(store);
         nextButtonHandler(store);
+
     }
 }
 

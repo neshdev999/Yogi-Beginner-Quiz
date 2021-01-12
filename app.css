@@ -297,7 +297,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(249, 57, 134, 0.2);
+    /* background-color: rgba(249, 57, 134, 0.2); */
+    background-color: transparent;
     color: rgb(251, 18, 83);
     font-family: 'Yusei Magic', sans-serif;
     font-size: 20px;
